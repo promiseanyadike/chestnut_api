@@ -1,0 +1,177 @@
+<template>
+  <div class="main-section">
+    <div class="is-flex">
+      <div class="col">
+        <h1>About Page</h1>
+        <div class="top-right-item">
+          <nuxt-link to="/dashboard" aria-current="page" v-if="!edit" @click="toggleEdit">
+            <button class="button is-danger">Cancel</button>
+          </nuxt-link>
+          <button class="button create-button edit-button" v-if="edit" @click="toggleEdit">Edit</button>
+          <button
+            class="button create-button save-button"
+            :class="loading"
+            @click="editNews"
+            v-if="!edit"
+          >Save</button>
+        </div>
+        <div class="seperator" />
+      </div>
+    </div>
+    <section class="col">
+      <image-upload
+        label="Header Image"
+        v-model="value.images"
+        @image="isImageValid($event)"
+        :readonly="edit"
+      />
+      <div class v-if="!edit">
+        <div class="level">
+          <div class="level-right level-item">
+            <button
+              class="button is-info is-small has-text-right is-outlined print-invoice-button"
+              @click="addSection()"
+            >
+              Add new Section
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <drop-down
+        ref="custom_component"
+        v-for="(arr, idx) in value.title"
+        :total="value.title.length"
+        @deleteSection="delSection($event)"
+        :key="idx"
+        :edit="edit"
+        :content="arr"
+        :index="idx"
+      />
+    </section>
+  </div>
+</template>
+
+<script>
+import QuillEditor from "@/components/widgets/QuillEditor.vue";
+import ImagePreview from "@/components/widgets/ImagePreview.vue";
+import ImageUpload from "@/components/widgets/ImageUpload.vue";
+import { mapState } from "vuex";
+import DropDown from "@/components/widgets/DropDown.vue";
+
+
+import {
+  clone,
+  copy,
+  Notification,
+  dateFormater,
+  unSlugify,
+  Slugify
+} from "@/utils/helpers";
+
+export default {
+  components: {
+    ImageUpload,
+    QuillEditor,
+    DropDown
+  },
+  data() {
+    return {
+      edit: true,
+      slugUrl: null,
+      value: {},
+      loading: "",
+      isImage: false
+    };
+  },
+  // async asyncData({ store, params }) {
+  //   await store.dispatch("news/getNews", params.id);
+  //   await store.dispatch("news/getCategory");
+
+  //   let value = clone(store.state.news.news);
+
+  //   value.title = value.title.replace(/_/g, " ");
+  //   return { value };
+  // },
+  async asyncData({ store, error }) {
+    try {
+      await store.dispatch("map/getAboutPage")
+      // console.log(ret)
+      let value = copy(store.state.map.about);
+        console.log(value)
+      // let img = await store.dispatch("map/getHome")
+      // let logo = img[18].image
+      value.title = value.title.replace(/_/g, " ");
+      return {
+       value
+        // logo
+      }
+    } catch(err) {
+        error(err)
+    }
+  },
+
+  // mounted() {
+  //   this.startDate = new Date(this.value.date);
+  //   this.slugUrl = unSlugify(this.value.url);
+  // },
+  // watch: {
+  //   startDate(newval, oldval) {
+  //     this.value.date = dateFormater(newval);
+  //   },
+  //   "value.title": function(val, oldval) {
+  //     this.slugUrl = Slugify(val);
+  //   },
+  //   slugUrl(newval, oldval) {
+  //     this.value.url = Slugify(newval);
+  //   }
+  // },
+
+  computed: {
+    ...mapState("map", ["about"])
+    // ...mapState(["editAccess"])
+  },
+
+  methods: {
+    toggleEdit() {
+      this.edit = !this.edit;
+    },
+
+    isImageValid(validity) {
+      this.isImage = validity;
+    },
+
+    async editNews() {
+      let result = await this.$validator.validateAll();
+      if (!this.isImage) {
+        Notification(this, "Please Upload an Image.", "is-danger");
+        return;
+      }
+      if (result) {
+        this.loading = "is-loading";
+        let data = clone(this.value);
+        let res = await this.$store.dispatch("", {
+          params: data,
+          id: data.id
+        });
+        if (res == 1) {
+          Notification(this, "Successfully Edited News Post.", "is-success");
+          this.loading = "";
+          setTimeout(() => this.$router.push("/dashboard"), 1000);
+          return;
+        }
+        Notification(this, "Error Editing  News Post.", "is-danger");
+        this.loading = "";
+        return;
+      }
+    }
+  }
+};
+</script>
+
+<style>
+.editQuill .ql-editor {
+  min-height: 350px;
+}
+</style>

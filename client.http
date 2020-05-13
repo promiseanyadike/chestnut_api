@@ -1,0 +1,289 @@
+###
+POST http://localhost:8080/createuser HTTP/1.1
+content-type: application/json 
+
+[
+	{
+		"title": "20, Kayode Street, Double Powerline Ejigbo Lagos Nigeria.",
+		"content": "+2348168131014"
+	}
+]
+
+###
+GET http://localhost:8080/getusers HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:8080/getuser/7 HTTP/1.1
+content-type: application/json
+
+###
+PUT http://localhost:8080/updateuser/1
+Content-Type: application/json
+
+{ 	
+	"title": "Dry Cleaning & Laundry To Your Door Step",
+	"content": "We at Deep touch laundry, deliver high quality care dry cleaning services. Save time for more important things as you can trust us with any type of laundry service you desire. Your wears are delivered in better condition and at the right time too. Our objective is always leaving you, our dear valued customer looking spotless and bright to your much delight.",
+	"image": "static/slide-go.jpg"
+}
+
+###
+DELETE http://localhost:8080/deleteuser/7 HTTP/1.1
+Content-Type: application/json
+
+### Authentication--------------------------------------------------------------------------------
+GET http://localhost:8080/api/auth/users HTTP/1.1
+content-type: application/json
+###
+POST http://localhost:4000/api/auth/login
+Content-Type: application/json;charset=UTF-8
+
+{
+  "email": "mosesozoumeh@gmail.com",
+  "password": "m@ses987"
+}
+
+###
+
+GET http://localhost:4000/api/auth/logout
+
+
+### About............................................................................
+POST http://localhost:8080/about HTTP/1.1
+content-type: application/json 
+
+[
+	{
+		"title": "20, Kayode Street, Double Powerline Ejigbo Lagos Nigeria.",
+		"content": "+2348168131014"
+	}
+]
+
+###
+###
+GET http://localhost:8080/getdetails HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:8080/getdetail/1 HTTP/1.1
+content-type: application/json
+
+
+###
+PUT http://localhost:8080/updatedetail/6
+Content-Type: application/json
+
+	{
+		"title": "EBUBE ARIRIGUZO",
+		"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.",
+		"images": "static/ebube.jpg"
+	}
+###
+DELETE http://localhost:8080/deletedetail/9 HTTP/1.1
+Content-Type: application/json
+
+
+### Contactus----------------------------------------------------------------------------------
+###
+POST http://localhost:8080/contact HTTP/1.1
+content-type: application/json 
+
+[
+	{
+		"title": "Dry Cleaning & Laundry to your Door Steps",
+		"content": "We at Deep touch laundry, deliver high quality care dry cleaning services. Save time for more important things as you can trust us with any type of laundry service you desire. Your wears are delivered in better condition and at the right time too. Our objective is always leaving you, our dear valued customer looking spotless and bright to your much delight."
+	},
+	{
+		"title": "clean clothes have Never been this easy"
+	},
+  {
+		"title": "self service",
+		"content": "you need to reliably transform your standard setters to increase your capability velocity. We aim to dynamically integrate our cloud by virtually revolutionizing our immersive wholesale propositions."
+	},
+	{
+		"title": "commercial",
+		"content": "you need to reliably transform your standard setters to increase your capability velocity. We aim to dynamically integrate our cloud by virtually revolutionizing our immersive wholesale propositions."
+	},
+	{
+		"title": "stain removal",
+		"content": "you need to reliably transform your standard setters to increase your capability velocity. We aim to dynamically integrate our cloud by virtually revolutionizing our immersive wholesale propositions."
+	},
+	{
+		"title": "Delivery",
+		"content": "you need to reliably transform your standard setters to increase your capability velocity. We aim to dynamically integrate our cloud by virtually revolutionizing our immersive wholesale propositions."
+	},
+  {
+    "title": "Gallery"
+  },
+  {
+    "image": "static/birth_certificate.pdf"
+  }
+]
+
+###
+GET http://localhost:8080/getcontacts HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:8080/getcontact/1 HTTP/1.1
+content-type: application/json
+
+###
+PUT http://localhost:8080/updatecontact/1
+Content-Type: application/json
+
+{ 	
+	"title": "Dry Cleaning & Laundry To Your Door Step",
+	"content": "We at Deep touch laundry, deliver high quality care dry cleaning services. Save time for more important things as you can trust us with any type of laundry service you desire. Your wears are delivered in better condition and at the right time too. Our objective is always leaving you, our dear valued customer looking spotless and bright to your much delight.",
+	"image": "",
+	"date_created": "0001-01-01T00:00:00Z",
+	"date_updated": "0017-01-01T00:00:00Z"
+}
+
+###
+DELETE http://localhost:8080/deletecontact/9 HTTP/1.1
+Content-Type: application/json
+
+### Price Table-------------------------------------------------------------------------------
+POST http://localhost:8080/createprice HTTP/1.1
+content-type: application/json 
+
+[
+	{
+		"price": "200"
+	},
+	{
+		"name": "Shirts"
+	},
+	{
+		"name": "Trousers"
+	},
+	{
+		"name": "Gown"
+	},
+	{
+		"name": "Skirts"
+	},
+	{
+		"name": "Tedy Bear(small)"
+	},
+	{
+		"price": "100"
+	},
+	{
+		"name": "Head-Tie"
+	},
+	{
+		"name": "Cap"
+	},
+	{
+		"name": "Tie"
+	},
+	{
+		"price": "300"
+	},
+	{
+		"name": "Native"
+	},
+	{
+		"name": "Bed Spray(small)"
+	},
+	{
+		"price": "Specials"
+	},
+	{
+		"price": "1000",
+		"name": "Suits"
+	},
+	{
+		"price": "400",
+		"name": "Jackets"
+	},
+	{
+		"price": "3000",
+		"name": "Wedding Gown"
+	},
+	{
+		"price": "500",
+		"name": "Agbada"
+	},
+	{
+		"price": "1000",
+		"name": "Duve(big)"
+	},
+	{
+		"title": "700",
+		"content": "Duve(small"
+	},
+	{
+		"price": "500",
+		"name": "Bed Spray(big)"
+	},
+	{
+		"price": "400",
+		"name": "Curtain(#1)"
+	},
+	{
+		"price": "1400",
+		"name": "Curtains(#4)"
+	},
+	{
+		"price": "150",
+		"name": "Shoes"
+	},
+	{
+		"price": "400",
+		"name": "Tedy Bear(Big)"
+	},
+	{
+		"price": "(30000-70000)",
+		"name": "New House Cleaning"
+	},
+	{
+		"price": "100",
+		"name": "Chemical Cloth Wash"
+	},
+	{
+		"name": "Others"
+	},
+	{
+		"price": "250",
+		"v": "Suits"
+	},
+	{
+		"price": "1500",
+		"name": "Wedding Gown"
+	},
+	{
+		"price": "250",
+		"name": "Agbada"
+	},
+	{
+		"price": "20",
+		"name": "Tie"
+	}
+]
+
+###
+GET http://localhost:8080/getprices HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:8080/getprice/1 HTTP/1.1
+content-type: application/json
+
+
+###
+PUT http://localhost:8080/updateprice/
+Content-Type: application/json
+
+{ 	
+	"price": "100",
+	"name": "Chemical Cloth Wash",
+	"date_created": "0001-01-01T00:00:00Z",
+	"date_updated": "0017-01-01T00:00:00Z"
+}
+
+###
+DELETE http://localhost:8080/deleteprice/9 HTTP/1.1
+Content-Type: application/json

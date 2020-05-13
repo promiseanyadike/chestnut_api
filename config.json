@@ -1,0 +1,6 @@
+{
+  "Host": "127.0.0.1",
+  "DbName": "dtouchexperts",
+  "DbUser": "dtouchexpertsdba",
+  "DbPassword": "dtouchdba"
+}
